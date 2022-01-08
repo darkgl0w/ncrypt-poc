@@ -1,0 +1,43 @@
+{
+  "name": "ncrypt-poc",
+  "version": "1.0.0",
+  "description": "SHA256-CRYPT and SHA512-CRYPT for Node.js POC",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --color .",
+    "lint:fix": "eslint --color --fix .",
+    "test": "npm run lint && npm run unit",
+    "unit": "tap -J test/*.test.js",
+    "unit:report": "npm run unit -- --coverage-report=html",
+    "unit:verbose": "npm run unit -- -Rspec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkgl0w/ncrypt-poc.git"
+  },
+  "keywords": [
+    "crypt",
+    "SHA-256",
+    "SHA-512",
+    "SHA256-CRYPT",
+    "SHA512-CRYPT",
+    "Unix crypt"
+  ],
+  "author": {
+    "name": "darkgl0w"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/darkgl0w/ncrypt-poc/issues"
+  },
+  "homepage": "https://github.com/darkgl0w/ncrypt-poc#readme",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "tap": "^15.1.6",
+    "tsd": "^0.19.1"
+  }
+}

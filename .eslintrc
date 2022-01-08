@@ -1,0 +1,14 @@
+{
+  "extends": "standard",
+  "root": true,
+  "rules": {
+    "semi": [
+      1,
+      "always"
+    ],
+    "operator-linebreak": [
+      2,
+      "before"
+    ]
+  }
+}
