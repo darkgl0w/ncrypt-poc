@@ -189,7 +189,7 @@ test('It should pass the original `sha512-crypt` implementation test suite', asy
   });
 });
 
-test('It should generate a 16 chars salt when the user does not provide one', async (t) => {
+test('It should generate a 16 chars salt if the user does not provide one', async (t) => {
   t.test('when using `sha256-crypt`', async (t) => {
     t.plan(2);
 
