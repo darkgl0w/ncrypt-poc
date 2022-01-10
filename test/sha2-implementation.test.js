@@ -4,7 +4,7 @@ const { test } = require('tap');
 const { crypt, verify } = require('..');
 
 test('It should pass the `sha256-crypt` reference implementation test suite', async (t) => {
-  t.test('it should generate and verify a hash when a salt is provided', async (t) => {
+  t.test('It should generate and verify a hash when a salt is provided', async (t) => {
     t.plan(2);
 
     const password = 'Hello world!';
@@ -17,7 +17,7 @@ test('It should pass the `sha256-crypt` reference implementation test suite', as
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should truncate the salt to 16 chars and apply the specified number of rounds', async (t) => {
+  t.test('It should truncate the salt to 16 chars and apply the specified number of rounds', async (t) => {
     t.plan(2);
 
     const password = 'Hello world!';
@@ -30,7 +30,7 @@ test('It should pass the `sha256-crypt` reference implementation test suite', as
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should truncate the salt to 16 chars and apply the default number of rounds', async (t) => {
+  t.test('It should truncate the salt to 16 chars and apply the default number of rounds', async (t) => {
     t.plan(2);
 
     const password = 'This is just a test';
@@ -43,7 +43,7 @@ test('It should pass the `sha256-crypt` reference implementation test suite', as
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should generate and verify a hash when a long salt and passwords are provided', async (t) => {
+  t.test('It should generate and verify a hash when a long salt and passwords are provided', async (t) => {
     t.plan(2);
 
     const password = 'a very much longer text to encrypt.  This one even stretches over morethan one line.';
@@ -56,7 +56,7 @@ test('It should pass the `sha256-crypt` reference implementation test suite', as
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should generate and verify a hash when a short salt and a long password are provided', async (t) => {
+  t.test('It should generate and verify a hash when a short salt and a long password are provided', async (t) => {
     t.plan(2);
 
     const password = 'we have a short salt string but not a short password';
@@ -69,7 +69,7 @@ test('It should pass the `sha256-crypt` reference implementation test suite', as
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should generate and verify a hash when a short password and salt are provided', async (t) => {
+  t.test('It should generate and verify a hash when a short password and salt are provided', async (t) => {
     t.plan(2);
 
     const password = 'a short string';
@@ -82,7 +82,7 @@ test('It should pass the `sha256-crypt` reference implementation test suite', as
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should apply a minimum of 1000 rounds when the provided rounds number is < 1000', async (t) => {
+  t.test('It should apply a minimum of 1000 rounds when the provided rounds number is < 1000', async (t) => {
     t.plan(2);
 
     const password = 'the minimum number is still observed';
@@ -97,7 +97,7 @@ test('It should pass the `sha256-crypt` reference implementation test suite', as
 });
 
 test('It should pass the original `sha512-crypt` implementation test suite', async (t) => {
-  t.test('it should generate and verify a hash when a salt is provided', async (t) => {
+  t.test('It should generate and verify a hash when a salt is provided', async (t) => {
     t.plan(2);
 
     const password = 'Hello world!';
@@ -110,7 +110,7 @@ test('It should pass the original `sha512-crypt` implementation test suite', asy
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should truncate the salt to 16 chars and apply the specified number of rounds', async (t) => {
+  t.test('It should truncate the salt to 16 chars and apply the specified number of rounds', async (t) => {
     t.plan(2);
 
     const password = 'Hello world!';
@@ -123,7 +123,7 @@ test('It should pass the original `sha512-crypt` implementation test suite', asy
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should truncate the salt to 16 chars and apply the default number of rounds', async (t) => {
+  t.test('It should truncate the salt to 16 chars and apply the default number of rounds', async (t) => {
     t.plan(2);
 
     const password = 'This is just a test';
@@ -136,7 +136,7 @@ test('It should pass the original `sha512-crypt` implementation test suite', asy
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should generate and verify a hash when a long salt and passwords are provided', async (t) => {
+  t.test('It should generate and verify a hash when a long salt and passwords are provided', async (t) => {
     t.plan(2);
 
     const password = 'a very much longer text to encrypt.  This one even stretches over morethan one line.';
@@ -149,7 +149,7 @@ test('It should pass the original `sha512-crypt` implementation test suite', asy
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should generate and verify a hash when a short salt and a long password are provided', async (t) => {
+  t.test('It should generate and verify a hash when a short salt and a long password are provided', async (t) => {
     t.plan(2);
 
     const password = 'we have a short salt string but not a short password';
@@ -162,7 +162,7 @@ test('It should pass the original `sha512-crypt` implementation test suite', asy
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should generate and verify a hash when a short password and salt are provided', async (t) => {
+  t.test('It should generate and verify a hash when a short password and salt are provided', async (t) => {
     t.plan(2);
 
     const password = 'a short string';
@@ -175,7 +175,7 @@ test('It should pass the original `sha512-crypt` implementation test suite', asy
     t.equal(verify(password, hash), true);
   });
 
-  t.test('it should apply a minimum of 1000 rounds when the provided rounds number is < 1000', async (t) => {
+  t.test('It should apply a minimum of 1000 rounds when the provided rounds number is < 1000', async (t) => {
     t.plan(2);
 
     const password = 'the minimum number is still observed';
@@ -186,27 +186,5 @@ test('It should pass the original `sha512-crypt` implementation test suite', asy
 
     t.equal(output, hash);
     t.equal(verify(password, hash), true);
-  });
-});
-
-test('It should generate a 16 chars salt if the user does not provide one', async (t) => {
-  t.test('when using `sha256-crypt`', async (t) => {
-    t.plan(2);
-
-    const output = crypt('password', '$5');
-    const magic = output.slice(0, output.lastIndexOf('$'));
-
-    t.equal(/^\$5\$[/.a-zA-Z0-9]+/s.test(magic), true);
-    t.equal(magic.slice(1).split('$')[1].length, 16);
-  });
-
-  t.test('when using `sha512-crypt`', async (t) => {
-    t.plan(2);
-
-    const output = crypt('password', '$6');
-    const magic = output.slice(0, output.lastIndexOf('$'));
-
-    t.equal(/^\$6\$[/.a-zA-Z0-9]+/s.test(magic), true);
-    t.equal(magic.slice(1).split('$')[1].length, 16);
   });
 });

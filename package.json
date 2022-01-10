@@ -7,9 +7,13 @@
     "lint": "eslint --color .",
     "lint:fix": "eslint --color --fix .",
     "test": "npm run lint && npm run unit",
-    "unit": "tap -J test/*.test.js",
+    "unit": "set FAST_CRYPT=true && tap -J test/*.test.js",
     "unit:report": "npm run unit -- --coverage-report=html",
-    "unit:verbose": "npm run unit -- -Rspec"
+    "unit:verbose": "npm run unit -- -Rspec",
+    "test:complete": "npm run lint && npm run unit:complete",
+    "unit:complete": "tap -J test/*.test.js --no-timeout",
+    "unit:complete:report": "npm run unit:complete -- --coverage-report=html",
+    "unit:complete:verbose": "npm run unit:complete -- -Rspec"
   },
   "repository": {
     "type": "git",
