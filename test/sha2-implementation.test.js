@@ -96,7 +96,7 @@ test('It should pass the `sha256-crypt` reference implementation test suite', as
   });
 });
 
-test('It should pass the original `sha512-crypt` implementation test suite', async (t) => {
+test('It should pass the `sha512-crypt` reference implementation test suite', async (t) => {
   t.test('It should generate and verify a hash when a salt is provided', async (t) => {
     t.plan(2);
 
