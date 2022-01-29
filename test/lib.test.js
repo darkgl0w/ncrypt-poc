@@ -3,7 +3,7 @@
 const { test } = require('tap');
 const { crypt, verify } = require('..');
 const { sha2Crypt } = require('../lib/sha2');
-const { parseMagicSalt } = require('../lib/utils');
+const { parseMagicSalt, to64 } = require('../lib/utils');
 
 // We conditionnally execute this test as it can take more than 4 hours to complete
 if (!process.env.FAST_CRYPT === 'true') {
@@ -114,14 +114,14 @@ test('It should throw when trying to use an unsupported algorithm', async (t) =>
     }
   });
 
-  const sha2UnsupportedAlgorithms = [null, undefined, 'md5'];
+  const sha2UnsupportedAlgorithms = [null, undefined, 'scrypt'];
 
   for (const algorithm of sha2UnsupportedAlgorithms) {
     t.test(`inside the internal private sha2Crypt() method with the algorithm option set to '${algorithm}'`, async (t) => {
       t.plan(2);
 
       try {
-        sha2Crypt('password', { algorithm });
+        sha2Crypt({ algorithm, password: 'password' });
       } catch (err) {
         t.ok(err);
         t.equal(err.message, `Unknown algorithm '${algorithm}', only sha256 and sha512 algorithms are supported`);
@@ -151,5 +151,21 @@ test('It should correctly parse the magic salt', async (t) => {
     t.equal(algorithm, 'sha512');
     t.equal(rounds, 999999999);
     t.equal(salt, 'roundstoohigh');
+  });
+});
+
+test('It should throw on bad `to64()` options :', async (t) => {
+  t.test('when `data` is not a buffer', async (t) => {
+    t.plan(1);
+
+    t.throws(() => to64('not a buffer', [0, 12]), 'data must be a buffer');
+  });
+
+  t.test('when `blocksOrder` is not an array of integers', async (t) => {
+    t.plan(1);
+
+    t.throws(
+      () => to64(Buffer.alloc(16), 'not an array of integers'),
+      'blocksOrder must be an array of integers');
   });
 });
