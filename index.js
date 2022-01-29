@@ -4,14 +4,18 @@ const { timingSafeEqual } = require('crypto');
 const { sha2Crypt } = require('./lib/sha2');
 const { parseMagicSalt } = require('./lib/utils');
 
+/**
+ * @param {*} password - The password string.
+ * @param {*} magic - The salt string.
+ */
 function crypt (password, magic) {
-  const { algorithm, rounds, salt } = parseMagicSalt(magic);
+  const { algorithm, prefix, rounds, salt } = parseMagicSalt(magic);
   const result = [''];
 
-  result.push(algorithm === 'sha256' ? 5 : 6);
+  result.push(prefix);
   if (magic.slice(1).split('$').length === 3 || rounds !== 5000) result.push(`rounds=${rounds}`);
   result.push(salt);
-  result.push(sha2Crypt(password, { algorithm, rounds, salt }));
+  result.push(sha2Crypt({ algorithm, password, rounds, salt }));
 
   return result.join('$');
 }
