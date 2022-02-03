@@ -5,8 +5,8 @@ const { sha2Crypt } = require('./lib/sha2');
 const { parseMagicSalt } = require('./lib/utils');
 
 /**
- * @param {*} password - The password string.
- * @param {*} magic - The salt string.
+ * @param {string} password - The password string.
+ * @param {string} magic - The salt string.
  */
 function crypt (password, magic) {
   const { algorithm, prefix, rounds, salt } = parseMagicSalt(magic);
@@ -20,6 +20,10 @@ function crypt (password, magic) {
   return result.join('$');
 }
 
+/**
+ * @param {string} password - The password string.
+ * @param {string} hash - The password hash to verify.
+ */
 function verify (password, hash) {
   const salt = hash.slice(0, hash.lastIndexOf('$'));
 
